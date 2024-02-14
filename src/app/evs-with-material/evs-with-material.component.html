@@ -4,25 +4,30 @@
     <app-table></app-table>
 </div>
 <ng-template #materialMode>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="evTop25DS!" class="mat-elevation-z8">
 
         <ng-container matColumnDef="Rank">
-            <td mat-cell *matCellDef="let ev"> {{ev.Rank}} </td>
+            <th mat-header-cell *matHeaderCellDef> Rank. </th>
+            <td mat-cell *matCellDef="let ev"> {{ev.rank}} </td>
         </ng-container>
 
         <ng-container matColumnDef="Model">
-            <td mat-cell *matCellDef="let ev"> {{ev.Model}} </td>
+            <th mat-header-cell *matHeaderCellDef> Model </th>
+            <td mat-cell *matCellDef="let ev"> {{ev.model}} </td>
         </ng-container>
 
         <ng-container matColumnDef="Quantity">
-            <td mat-cell *matCellDef="let ev"> {{ev.Quantity}} </td>
+            <th mat-header-cell *matHeaderCellDef> Quantity </th>
+            <td mat-cell *matCellDef="let ev"> {{ev.quantity}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="Change Quantity Percent">
-            <td mat-cell *matCellDef="let ev"> {{ev.change}} </td>
+        <ng-container matColumnDef="Change-Quantity-Percent">
+            <th mat-header-cell *matHeaderCellDef> Change-Quantity-Percent </th>
+            <td mat-cell *matCellDef="let ev"> {{ev.changeQuantityPercent}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+    </table> 
 </ng-template>
+    
