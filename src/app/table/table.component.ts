@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { ECarsData, eCarsTop25_2022 } from '../data/evs/e-cars directive typescript';
+import { DataEVsService, ECarsData } from '../services/data-evs.service';
 import { AsyncPipe, NgClass, NgFor } from '@angular/common';
+
+ 
 
 @Component({
   selector: 'app-table',
@@ -12,16 +14,19 @@ import { AsyncPipe, NgClass, NgFor } from '@angular/common';
 })
 
 export class TableComponent implements OnInit {
+  
   evTop25$?:Observable<ECarsData[]> ;
 
   ngOnInit(): void {
-    this.evTop25$ = of(eCarsTop25_2022);
+    this.evTop25$ = of(this.ev.eCarsTop25_2022);
   }
   
   getEvData(): Observable<Array<ECarsData>> | undefined {
     return this.evTop25$;
   }
 
-  constructor(){}
+  constructor(public ev : DataEVsService){
+
+  }
 
 }

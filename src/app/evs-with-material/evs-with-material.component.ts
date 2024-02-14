@@ -1,14 +1,16 @@
 //Angular imports
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 
 //material imports
 import {MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatTableModule} from '@angular/material/table';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 
 //own imports
 import { TableComponent } from "../table/table.component";
-import { eCarsTop25_2022, ECarsData } from '../data/evs/e-cars directive typescript';
+import { ECarsData } from '../data/evs/e-cars directive typescript';
+import { DataEVsService } from '../services/data-evs.service';
+import { DataSource } from '@angular/cdk/collections';
 
 
 @Component({
@@ -18,12 +20,11 @@ import { eCarsTop25_2022, ECarsData } from '../data/evs/e-cars directive typescr
     styleUrl: './evs-with-material.component.css',
     imports: [MatSlideToggleModule, MatTableModule , NgIf, TableComponent]
 })
-export class EvsWithMaterialComponent {
-  @Input() evTop25: ECarsData[] = [];
-  evTop25Data: ECarsData[] = eCarsTop25_2022;
+export class EvsWithMaterialComponent implements OnInit, OnDestroy {
+  evTop25DS?: DataSource<ECarsData>;
   mode: string = "Material mode";
-  displayedColumns: string[] = ['Rank', 'Model', 'Quantity', 'Change Quantity Percent'];
-  dataSource = this.getData;
+  displayedColumns: string[] = ['Rank', 'Model', 'Quantity', 'Change-Quantity-Percent'];
+  
 
   changeMode(){
     if(this.mode === "Material mode"){
@@ -33,15 +34,14 @@ export class EvsWithMaterialComponent {
     };
   };
 
-  constructor(private getDataFromTable: TableComponent){}
+  constructor(private ev: DataEVsService){}
 
-  getData()  {
-    this.getDataFromTable.getEvData()?.subscribe( (data) => {
-      return data;
-    })     
+
+  ngOnInit(){
+    this.evTop25DS = new MatTableDataSource(this.ev.getEcars25())
   }
 
-  ngOnInit(){}
-
-  ngOnDestroy(){}
+  ngOnDestroy(){
+    
+  }
 }
