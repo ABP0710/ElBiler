@@ -1,0 +1,11 @@
+.top{
+    color: lightpink;
+    background-color: black;
+}
+.odd{
+    background-color: lightpink;
+}
+.headtable{
+    border: 5px solid;
+    border-color: black;
+}

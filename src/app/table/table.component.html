@@ -1,0 +1,19 @@
+<table class="headtable">
+    <thead>
+      <tr class="top">
+        <th>Rank</th>
+        <th>Model</th>
+        <th>Quantity</th>
+        <th>Change Quantity Percent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let car of evTop25$ | async ; let i = index" [ngClass]="{'odd': i % 2 !== 0}" >
+        <td>{{ car.rank }}</td>
+        <td>{{ car.model }}</td>
+        <td>{{ car.quantity }}</td>
+        <td>{{ car.changeQuantityPercent }} % </td>
+      </tr>
+    </tbody>
+  </table>
+  
