@@ -1,0 +1,26 @@
+<mat-card>
+  <form [formGroup]="formData" (ngSubmit)="submitForm()">
+    <mat-form-field appearance="fill" color="primary">
+      <input matInput type="number" placeholder="Rank" formControlName="rank">
+    </mat-form-field>
+    <mat-form-field appearance="fill" color="primary">
+      <input matInput placeholder="model" formControlName="model">
+    </mat-form-field>
+    <mat-form-field appearance="fill" color="primary">
+      <input matInput type="number" placeholder="quantity" formControlName="quantity">
+    </mat-form-field>
+    <mat-form-field appearance="fill" color="primary">
+      <input matInput type="number" placeholder="change Quantity Percent" formControlName="changeQuantityPercent">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+    <br>
+  </form>
+</mat-card>
+<mat-card>
+  <form [formGroup]="deleteForm" (ngSubmit)="deleteByRank()">
+    <mat-form-field appearance="fill" color="primary">
+      <input matInput type="number" placeholder="rank number to delete" formControlName="deleteRank">
+    </mat-form-field>
+    <button mat-raised-button color="warn" type="submit">Delete</button>
+  </form>
+</mat-card>
